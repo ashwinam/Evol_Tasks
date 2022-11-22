@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Type Note Release: </h1>
+    {% block content %}
+    <button> <a href="{% url 'create' %}">Create Type</a></button>
+    <hr>
+    <table>
+        <tr>
+            <th>Type Id</th>
+            <th>Type</th>
+        </tr>
+        {% for object in objects %}
+        <tr>
+            <td>{{object.type_id}}</td>
+            <td>{{object.type}}&nbsp;</td>
+            <td> <a href="{% url 'update' object.type_id %}">Update</a>&nbsp;</td>
+            <td> <a href="{% url 'delete' object.type_id %}">Delete</a></td>
+        </tr>
+        {% empty %}
+        <h4>No data available.</h4>
+        {% endfor %}
+    </table>
+    {% endblock content %}
+</body>
+
+</html>
